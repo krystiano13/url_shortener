@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import logo from '../images/logo.svg';
 ---
 
-<div id="hamburger-menu" class="rounded-2xl fixed w-[80%] ml-[10%] mt-[8rem] h-auto flex flex-col p-6 items-center">
+<div id="hamburger-menu" class="lg:hidden nav-hidden transition-transform rounded-2xl fixed w-[80%] ml-[10%] mt-[8rem] h-auto flex flex-col p-6 items-center">
     <a href="#" class="font-big text-center text-white transition-colors mt-2 mb-2 text-lg w-full">Features</a>
     <a href="#" class="font-big text-center text-white transition-colors mt-2 mb-2 text-lg w-full">Pricing</a>
     <a href="#" class="font-big text-center text-white transition-colors mt-2 mb-2 text-lg w-full">Resources</a>
@@ -33,8 +33,13 @@ import logo from '../images/logo.svg';
     </div>
 </nav>
 
-<script>
+<script client:load>
+    const hamburgerButton= document.querySelector('#hamburgerButton');
+    const hamburgerMenu = document.querySelector('#hamburger-menu');
 
+    hamburgerButton.addEventListener('click', () => {
+       hamburgerMenu.classList.toggle('nav-hidden');
+    });
 </script>
 
 <style>
@@ -58,5 +63,7 @@ import logo from '../images/logo.svg';
         background-color: var(--dark-violet);
     }
 
-
+    .nav-hidden {
+        transform: translateY(-100vh);
+    }
 </style>
