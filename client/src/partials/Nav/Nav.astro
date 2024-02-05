@@ -1,0 +1,64 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../../images/logo.svg';
+
+import HamburgerMenu from './HamburgerMenu.astro';
+import HamburgerButton from './HamburgerButton.astro';
+
+const routes = [
+    {
+        href: '#',
+        text: 'Features'
+    },
+    {
+        href: '#',
+        text: 'Pricing'
+    },
+    {
+        href: '#',
+        text: 'Resources'
+    },
+];
+---
+
+<HamburgerMenu routes={routes} />
+<nav class="w-full flex items-center justify-between p-12 lg:pr-36 lg:pl-36">
+    <div class="flex items-center">
+        <Image src={logo} alt="Shortly Logo Icon" />
+        <section class="ml-6 hidden lg:block" id="urls">
+           {routes.map(item => <a href={item.href} class="grayish-violet font-big ml-12 transition-colors">{item.text}</a>)}
+        </section>
+    </div>
+    <section class="justify-self-end hidden lg:block">
+        <button class="cursor-pointer font-big mr-6 grayish-violet h-dark-violet transition-colors">Login</button>
+        <button class="p-2 pl-6 pr-6 rounded-3xl cursor-pointer font-big text-white bg-cyan hover:opacity-60 transition-opacity">Sign Up</button>
+    </section>
+    <HamburgerButton />
+</nav>
+
+<script client:load>
+    const hamburgerButton= document.querySelector('#hamburgerButton');
+    const hamburgerMenu = document.querySelector('#hamburger-menu');
+
+    hamburgerButton.addEventListener('click', () => {
+       hamburgerMenu.classList.toggle('nav-hidden');
+    });
+</script>
+
+<style>
+    .grayish-violet {
+        color: var(--grayish-violet);
+    }
+
+    .stripe {
+        background-color: var(--gray);
+    }
+
+    a:hover, .h-dark-violet:hover {
+        color: var(--very-dark-violet);
+    }
+
+    .bg-cyan {
+        background-color: var(--cyan);
+    }
+</style>

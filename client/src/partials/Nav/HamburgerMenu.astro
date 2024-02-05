@@ -1,0 +1,40 @@
+---
+const { routes } = Astro.props;
+---
+
+<div id="hamburger-menu" class="lg:hidden nav-hidden transition-transform rounded-2xl fixed w-[80%] ml-[10%] mt-[8rem] h-auto flex flex-col p-6 items-center">
+    {routes.map(item => <a href={item.href} class="font-big text-center text-white transition-colors mt-2 mb-2 text-lg w-full">{item.text}</a>)}
+    <div id="separator" class="w-[85%] h-[1px] opacity-50 stripe m-2"></div>
+    <button class="cursor-pointer text-center w-full mt-2 mb-2 font-big grayish-violet h-dark-violet transition-colors">Login</button>
+    <button class="p-2 pl-6 pr-6 text-center w-full mt-2 mb-2 rounded-3xl cursor-pointer font-big text-white bg-cyan hover:opacity-60 transition-opacity">Sign Up</button>
+</div>
+
+<style>
+    .nav-hidden {
+        transform: translateY(-100vh);
+    }
+
+    #hamburger-menu {
+        background-color: var(--dark-violet);
+    }
+
+    .grayish-violet {
+        color: var(--grayish-violet);
+    }
+
+    .stripe {
+        background-color: var(--gray);
+    }
+
+    a:hover {
+        color: var(--very-dark-violet);
+    }
+
+    .h-dark-violet:hover {
+        color : white;
+    }
+
+    .bg-cyan {
+        background-color: var(--cyan);
+    }
+</style>
