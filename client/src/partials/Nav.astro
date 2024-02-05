@@ -3,17 +3,31 @@ import { Image } from 'astro:assets';
 import logo from '../images/logo.svg';
 ---
 
-<nav class="w-full flex items-center justify-between p-6 pr-36 pl-36">
+<nav class="w-full flex items-center justify-between p-12 pr-36 pl-36">
     <div class="flex items-center">
         <Image src={logo} alt="Shortly Logo Icon" />
         <section class="ml-6" id="urls">
-            <a class="font-big">Features</a>
-            <a class="font-big">Pricing</a>
-            <a class="font-big">Resources</a>
+            <a href="#" class="font-big ml-12 transition-colors">Features</a>
+            <a href="#" class="font-big ml-12 transition-colors">Pricing</a>
+            <a href="#" class="font-big ml-12 transition-colors">Resources</a>
         </section>
     </div>
     <section class="justify-self-end">
-        <button>Login</button>
-        <button>Sign Up</button>
+        <button class="cursor-pointer font-big mr-6 grayish-violet h-dark-violet transition-colors">Login</button>
+        <button class="p-2 pl-6 pr-6 rounded-3xl cursor-pointer font-big text-white bg-cyan hover:opacity-60 transition-opacity">Sign Up</button>
     </section>
 </nav>
+
+<style>
+    a, .grayish-violet {
+        color: var(--grayish-violet);
+    }
+
+    a:hover, .h-dark-violet:hover {
+        color: var(--very-dark-violet);
+    }
+
+    .bg-cyan {
+        background-color: var(--cyan);
+    }
+</style>
