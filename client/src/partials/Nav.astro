@@ -3,14 +3,16 @@ import { Image } from 'astro:assets';
 import logo from '../images/logo.svg';
 ---
 
-<nav>
-    <Image src={logo} alt="Shortly Logo Icon" />
-    <section id="urls">
-        <a>Features</a>
-        <a>Pricing</a>
-        <a>Resources</a>
-    </section>
-    <section>
+<nav class="w-full flex items-center justify-between p-6 pr-36 pl-36">
+    <div class="flex items-center">
+        <Image src={logo} alt="Shortly Logo Icon" />
+        <section class="ml-6" id="urls">
+            <a>Features</a>
+            <a>Pricing</a>
+            <a>Resources</a>
+        </section>
+    </div>
+    <section class="justify-self-end">
         <button>Login</button>
         <button>Sign Up</button>
     </section>
