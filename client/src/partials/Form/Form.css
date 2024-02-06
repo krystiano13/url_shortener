@@ -1,0 +1,11 @@
+form {
+    background-color: var(--dark-violet);
+}
+
+#btn {
+    background-color: var(--cyan);
+}
+
+#btn:hover {
+    background-color: #1ce0e0;
+}
