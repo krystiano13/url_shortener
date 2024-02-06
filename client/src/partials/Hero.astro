@@ -3,13 +3,13 @@ import { Image } from 'astro:assets';
 import HeroImage from '../images/illustration-working.svg';
 ---
 
-<section class="w-full p-12 lg:pr-36 lg:pl-36 flex items-center justify-between">
-    <div class="w-[40%] mt-24">
-        <h1 class="font-big text-7xl">More than just shorter links</h1>
-        <p class="font-small text-2xl mt-6">Build your own brand's recognition and get detailed insights on how your links are performing</p>
+<section class="w-full p-12 lg:pr-36 lg:pl-36 flex-col-reverse lg:flex-row flex items-center lg:justify-between">
+    <div class="lg:w-[40%] w-full mt-24 flex flex-col items-center lg:items-start">
+        <h1 class="font-big text-4xl text-center lg:text-start lg:text-7xl">More than just shorter links</h1>
+        <p class="font-small text-lg lg:text-2xl mt-6 text-center lg:text-start ">Build your own brand's recognition and get detailed insights on how your links are performing</p>
         <button class="p-2 pl-6 pr-6 text-center mt-6 rounded-3xl cursor-pointer font-big text-white bg-cyan hover:opacity-60 transition-opacity">Get Started</button>
     </div>
-    <div class="w-[50%]">
+    <div class="lg:w-[50%] w-full">
         <Image src={HeroImage} alt="Hero Image" />
     </div>
 </section>
