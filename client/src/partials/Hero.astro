@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets';
+import HeroImage from '../images/illustration-working.svg';
+---
+
+<section class="w-full p-12 lg:pr-36 lg:pl-36 flex items-center justify-between">
+    <div class="w-[40%] mt-24">
+        <h1 class="font-big text-7xl">More than just shorter links</h1>
+        <p class="font-small text-2xl mt-6">Build your own brand's recognition and get detailed insights on how your links are performing</p>
+        <button class="p-2 pl-6 pr-6 text-center mt-6 rounded-3xl cursor-pointer font-big text-white bg-cyan hover:opacity-60 transition-opacity">Get Started</button>
+    </div>
+    <div class="w-[50%]">
+        <Image src={HeroImage} alt="Hero Image" />
+    </div>
+</section>
+
+<style>
+    h1 {
+        color: var(--very-dark-violet);
+    }
+
+    p {
+        color: var(--gray);
+    }
+
+    button {
+        background-color: var(--cyan);
+    }
+
+    div img {
+        width: 100%;
+    }
+</style>
