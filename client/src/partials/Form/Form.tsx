@@ -15,7 +15,7 @@ export function Form() {
                     alt="background of form"
                     className="absolute w-full h-full rounded-xl block md:hidden"
                 />
-                <input className="text-sm md:text-base w-[85%] md:w-[72%] h-2/5 z-50 p-4 outline-none rounded-xl text-lg font-small" type="text"
+                <input className="text-sm md:text-base w-[85%] md:w-[72%] h-2/5 z-50 p-4 outline-none rounded-xl font-small" type="text"
                        placeholder="Shorten link here..."/>
                 <button
                     id="btn"
