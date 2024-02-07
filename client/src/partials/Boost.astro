@@ -1,0 +1,17 @@
+---
+import { Image } from 'astro:assets';
+import boostImageDesktop from '../images/bg-boost-desktop.svg';
+import boostImageMobile from '../images/bg-boost-mobile.svg';
+---
+
+<section class="w-full flex flex-col justify-center items-center gap-5 p-16 bg-violet relative">
+    <Image class="absolute w-full h-full hidden md:block" src={boostImageDesktop} alt="section background" />
+    <Image class="absolute w-full h-full md:hidden" src={boostImageMobile} alt="section background" />
+    <h2 class="z-50 font-big text-white text-2xl md:text-4xl text-center">Boost your links today</h2>
+    <button class="z-50 font-big text-white bg-cyan rounded-3xl p-3 pl-5 pr-5">Get Started</button>
+</section>
+
+<style>
+    .bg-violet { background-color: var(--dark-violet); }
+    .bg-cyan { background-color: var(--cyan); }
+</style>
