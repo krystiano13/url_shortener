@@ -1,0 +1,34 @@
+---
+import {Image} from "astro:assets";
+import Logo from '../../images/logo.svg';
+import Facebook from '../../images/icon-facebook.svg';
+import Instagram from '../../images/icon-instagram.svg';
+import Pinterest from '../../images/icon-pinterest.svg';
+import Twitter from '../../images/icon-twitter.svg';
+---
+
+<footer class="p-12 lg:pr-36 lg:pl-36 flex justify-between">
+    <section class="w-[30%]">
+        <Image src={Logo} alt="logo" />
+    </section>
+    <section id="links" class="w-[45%] flex justify-evenly">
+        <a class="font-big text-white text-lg cursor-pointer">Features</a>
+        <a class="font-big text-white text-lg cursor-pointer">Resources</a>
+        <a class="font-big text-white text-lg cursor-pointer">Company</a>
+    </section>
+    <section id="logos" class="w-[25%] flex gap-4 justify-end">
+        <Image class="w-6 h-6" src={Facebook} alt="facebook logo" />
+        <Image class="w-6 h-6" src={Instagram} alt="instagram logo" />
+        <Image class="w-6 h-6" src={Pinterest} alt="pinterest logo" />
+        <Image class="w-6 h-6" src={Twitter} alt="twitter logo" />
+    </section>
+</footer>
+
+<style>
+    footer {
+      background-color: var(--very-dark-violet);
+    }
+    footer img {
+        filter: brightness(7);
+    }
+</style>
