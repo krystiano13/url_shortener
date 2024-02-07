@@ -9,7 +9,7 @@ import Benefit from './Benefit.astro';
         Track how your links are performing across the web
         with our advanced statistics dashboard.
     </p>
-    <div id="pros" class="w-full h-auto flex gap-6 justify-center items-center mt-32">
+    <div id="pros" class="w-full h-auto flex flex-col md:flex-row gap-6 justify-center items-center mt-32">
         {
             Benefits.map(item => (
                 <Benefit img={item.img} alt={item.alt} title={item.title} desc={item.desc} />
