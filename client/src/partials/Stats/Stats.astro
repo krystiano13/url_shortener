@@ -1,0 +1,37 @@
+---
+import brandImage from '../../images/icon-brand-recognition.svg';
+import recordsImage from '../../images/icon-detailed-records.svg';
+import customizableImage from '../../images/icon-fully-customizable.svg';
+
+import Benefit from './Benefit.astro';
+
+const benefits = [
+    {
+        img : brandImage,
+        alt : "Brand Image",
+        title : "Brand Recognition",
+        desc : "Boost your brand recognition with each click. Generic links don't mean a thing. Branded links help instill confidence in your content"
+    }
+];
+---
+
+<section class="w-full whitesmoke flex flex-col items-center">
+    <h2 class="font-big text-4xl mt-20">Advanced Statistics</h2>
+    <p class="mt-5 font-small text-lg max-w-[90%] md:max-w-[30%] text-center">
+        Track how your links are performing across the web
+        with our advanced statistics dashboard.
+    </p>
+    <div id="pros" class="h-40 flex justify-center items-center">
+        {
+            benefits.map(item => (
+                <Benefit img={item.img} alt={item.alt} title={item.title} desc={item.desc} />
+            ))
+        }
+    </div>
+</section>
+
+<style>
+    .whitesmoke { background-color: whitesmoke; }
+    h1 { color: var(--very-dark-violet); }
+    p { color: var(--grayish-violet); }
+</style>

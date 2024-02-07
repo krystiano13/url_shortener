@@ -1,0 +1,10 @@
+---
+import {Image} from "astro:assets";
+const props = Astro.props;
+---
+
+<section id="benefit">
+    <Image src={props.img} alt={props.alt} />
+    <h3>{props.title}</h3>
+    <p>{props.desc}</p>
+</section>
