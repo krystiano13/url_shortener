@@ -1,5 +1,6 @@
 form {
     background-color: var(--dark-violet);
+    transform: translateY(60%);
 }
 
 #btn {
