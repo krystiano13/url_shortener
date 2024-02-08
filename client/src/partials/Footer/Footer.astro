@@ -1,10 +1,7 @@
 ---
 import {Image} from "astro:assets";
 import Logo from '../../images/logo.svg';
-import Facebook from '../../images/icon-facebook.svg';
-import Instagram from '../../images/icon-instagram.svg';
-import Pinterest from '../../images/icon-pinterest.svg';
-import Twitter from '../../images/icon-twitter.svg';
+import {Logos, Links} from './FooterData';
 ---
 
 <footer class="p-12 lg:pr-36 lg:pl-36 flex flex-col gap-5 lg:gap-0 lg:flex-row justify-center lg:justify-between items-center">
@@ -12,15 +9,14 @@ import Twitter from '../../images/icon-twitter.svg';
         <Image src={Logo} alt="logo" />
     </section>
     <section id="links" class="w-[45%] flex justify-evenly lg:gap-0 gap-3">
-        <a class="font-big text-white text-lg cursor-pointer">Features</a>
-        <a class="font-big text-white text-lg cursor-pointer">Resources</a>
-        <a class="font-big text-white text-lg cursor-pointer">Company</a>
+        {Links.map(item => (
+                <a class="font-big text-white text-lg cursor-pointer">
+                    {item}
+                </a>
+        ))}
     </section>
     <section id="logos" class="w-[25%] flex gap-4 justify-center lg:justify-end">
-        <Image class="w-6 h-6" src={Facebook} alt="facebook logo" />
-        <Image class="w-6 h-6" src={Instagram} alt="instagram logo" />
-        <Image class="w-6 h-6" src={Pinterest} alt="pinterest logo" />
-        <Image class="w-6 h-6" src={Twitter} alt="twitter logo" />
+        {Logos.map(item => <Image class="w-6 h-6" src={item.src} alt={item.alt} />)}
     </section>
 </footer>
 
