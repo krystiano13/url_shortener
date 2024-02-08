@@ -24,14 +24,24 @@ const routes = [
 <HamburgerMenu routes={routes} />
 <nav class="w-full flex items-center justify-between p-12 lg:pr-36 lg:pl-36">
     <div class="flex items-center">
-        <Image src={logo} alt="Shortly Logo Icon" />
+        <a href="/">
+            <Image src={logo} alt="Shortly Logo Icon" />
+        </a>
         <section class="ml-6 hidden lg:block" id="urls">
            {routes.map(item => <a href={item.href} class="grayish-violet font-big ml-12 transition-colors">{item.text}</a>)}
         </section>
     </div>
     <section class="justify-self-end hidden lg:block">
-        <button class="cursor-pointer font-big mr-6 grayish-violet h-dark-violet transition-colors">Login</button>
-        <button class="p-2 pl-6 pr-6 rounded-3xl cursor-pointer font-big text-white bg-cyan hover:opacity-60 transition-opacity">Sign Up</button>
+        <a href="/login">
+            <button class="cursor-pointer font-big mr-6 grayish-violet h-dark-violet transition-colors">
+                Login
+            </button>
+        </a>
+        <a href="/register">
+            <button class="p-2 pl-6 pr-6 rounded-3xl cursor-pointer font-big text-white bg-cyan hover:opacity-60 transition-opacity">
+                Sign Up
+            </button>
+        </a>
     </section>
     <HamburgerButton client:load />
 </nav>
