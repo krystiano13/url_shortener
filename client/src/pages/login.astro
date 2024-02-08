@@ -4,7 +4,7 @@ import Layout from '../partials/Layout.astro';
 
 <Layout>
     <section class="w-full h-[75vh] flex justify-center items-center">
-        <form class="flex flex-col items-center justify-center gap-6 p-6 rounded-xl">
+        <form class="flex flex-col items-center justify-center gap-8 p-9 pt-16 pb-16 rounded-xl">
             <label class="font-small">
                 <span>Username</span> <br />
                 <input required class="outline-none font-small" type="text" name="username">
@@ -13,7 +13,7 @@ import Layout from '../partials/Layout.astro';
                 <span>Password</span> <br />
                 <input required class="outline-none font-small" type="password" name="password" />
             </label>
-            <button class="font-small" type="submit">Log In</button>
+            <button class="font-small w-[80%] text-white bg-cyan p-2 pl-4 pr-4 rounded-xl" type="submit">Log In</button>
         </form>
     </section>
 </Layout>
@@ -44,6 +44,10 @@ import Layout from '../partials/Layout.astro';
 
     input:focus {
         border-color: var(--cyan);
+    }
+
+    .bg-cyan {
+        background-color: var(--cyan);
     }
 
     .cyan {
