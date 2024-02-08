@@ -10,10 +10,18 @@ import Layout from '../partials/Layout.astro';
                 <input required class="outline-none font-small" type="text" name="username">
             </label>
             <label class="font-small">
+                <span>Email</span> <br />
+                <input required class="outline-none font-small" type="email" name="email">
+            </label>
+            <label class="font-small">
                 <span>Password</span> <br />
                 <input required class="outline-none font-small" type="password" name="password" />
             </label>
-            <button class="font-small w-[80%] text-white bg-cyan p-2 pl-4 pr-4 rounded-xl" type="submit">Log In</button>
+            <label class="font-small">
+                <span>Repeat Password</span> <br />
+                <input required class="outline-none font-small" type="password" name="password2" />
+            </label>
+            <button class="font-small w-[80%] text-white bg-cyan p-2 pl-4 pr-4 rounded-xl" type="submit">Register</button>
         </form>
     </section>
 </Layout>
