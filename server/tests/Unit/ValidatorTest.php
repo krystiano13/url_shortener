@@ -14,3 +14,12 @@ test('Check string method (Greater than max)', function () {
 test('Check string method', function () {
     expect(Validator::string("Hello World"))->toBeTrue();
 });
+
+test('Check email method when false', function() {
+    expect(Validator::email("test123")) -> toBeFalse();
+});
+
+test('Check email method when true', function() {
+    expect(Validator::email("test123@o2.pl")) -> toBeTrue();
+});
+
