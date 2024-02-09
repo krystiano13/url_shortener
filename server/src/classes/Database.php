@@ -4,7 +4,13 @@ namespace App\classes;
 
 class Database
 {
-    private array $config = [];
+    const CONFIG = [
+        "host" => "localhost",
+        "port" => 3306,
+        "dbname" => "shortly",
+        "user" => "root",
+        "password" => ""
+    ];
     public $connection;
 
     private function getConfig() {
@@ -13,16 +19,14 @@ class Database
 
     public function __construct()
     {
-        $this -> config = $this -> getConfig();
-
-        $host = $this -> config['host'];
-        $port = $this -> config['port'];
-        $dbname = $this -> config['dbname'];
+        $host = self::CONFIG['host'];
+        $port = self::CONFIG['port'];
+        $dbname = self::CONFIG['dbname'];
 
         $this -> connection = new \PDO(
             "mysql:host={$host};port={$port};dbname={$dbname}",
-            $this -> config['user'],
-            $this -> config['password'],
+            self::CONFIG['user'],
+            self::CONFIG['password'],
             [
                 \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
                 \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
