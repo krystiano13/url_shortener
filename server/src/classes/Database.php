@@ -8,7 +8,7 @@ class Database
     public $connection;
 
     private function getConfig() {
-        return require_once '../configs/db.php';
+        return require_once __DIR__ . '/../configs/db.php';
     }
 
     public function __construct()
