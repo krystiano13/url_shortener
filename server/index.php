@@ -7,8 +7,6 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
 use App\classes\Database;
-use App\controllers\LinkController;
-use App\controllers\RegisterController;
 
 require __DIR__ . '/vendor/autoload.php';
 
@@ -26,5 +24,6 @@ $app->get('/', function (Request $request, Response $response, $args) {
 
 $app -> post('/shorten', '\App\controllers\LinkController:shorten');
 $app -> post('/register', '\App\controllers\RegisterController:register');
+$app -> post('/login', '\App\controllers\LoginController:login');
 
 $app->run();
