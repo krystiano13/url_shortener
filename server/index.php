@@ -19,7 +19,7 @@ $app->get('/', function (Request $request, Response $response, $args) {
     $result = $db -> query(
         "SELECT * FROM users"
     );
-    $response->getBody()->write(json_encode(['test' => 'hello world']));
+    $response->getBody()->write(json_encode($result));
     return $response -> withHeader('Content-Type', 'application/json');
 });
 
