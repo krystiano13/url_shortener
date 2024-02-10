@@ -6,6 +6,23 @@ use App\classes\Database;
 
 class Auth
 {
+    public static function attempt(string $username, string $password):bool {
+        $db = new Database();
+        $data = $db -> query('SELECT * FROM users WHERE username=:username',
+            ['username' => $username]
+        );
+
+        if(!count($data)) {
+            return false;
+        }
+
+        if(!password_verify($password,$data[0]['password'])) {
+            return false;
+        }
+
+        return true;
+    }
+
     public static function passwordConfirm(string $password1, string $password2):bool {
         return $password1 === $password2;
     }
