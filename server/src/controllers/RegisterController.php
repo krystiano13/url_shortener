@@ -7,6 +7,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 use App\classes\Validator;
 use App\classes\Auth;
+use App\classes\Database;
 
 class RegisterController
 {
@@ -29,8 +30,24 @@ class RegisterController
         $this -> validate($errors);
         $this -> authenticate($errors);
 
-        $response -> getBody() -> write(json_encode(['errors' => $errors]));
+        if(count($errors)) {
+            $response -> getBody() -> write(json_encode(['errors' => $errors]));
+            return $response
+                -> withHeader('Content-Type', 'application/json')
+                -> withStatus(200);
+        }
 
+        $db = new Database();
+        $db -> query(
+            "INSERT INTO users VALUES(NULL, :username, :email, :password)",
+            [
+                'username' => $this -> username,
+                'email' => $this -> email,
+                'password' => password_hash($this -> password1, PASSWORD_DEFAULT)
+            ]
+        );
+
+        $response -> getBody() -> write(json_encode(['message' => 'Account created']));
         return $response
             -> withHeader('Content-Type', 'application/json')
             -> withStatus(200);
@@ -59,7 +76,7 @@ class RegisterController
             array_push($errors, 'Email is not valid');
         }
 
-        if(!Validator::string($this -> password1, 8, (int)INF)) {
+        if(!Validator::string($this -> password1, 8)) {
             array_push($errors, 'Password must have at least 8 characters');
         }
     }
