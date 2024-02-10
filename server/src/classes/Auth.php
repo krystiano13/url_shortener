@@ -20,11 +20,11 @@ class Auth
             'value' => $value
         ]);
 
-        if($result[0] && count($result) > 0) {
+        if(count($result) > 0) {
             return false;
         }
 
-        if(!$result[0] || count($result) === 0) {
+        if(count($result) === 0) {
             return true;
         }
     }

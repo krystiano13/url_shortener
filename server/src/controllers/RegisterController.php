@@ -36,9 +36,7 @@ class RegisterController
             -> withStatus(200);
     }
 
-    private function authenticate(
-        array &$errors
-    ) {
+    private function authenticate(array &$errors):void {
         if(!Auth::passwordConfirm($this -> password1, $this -> password2)) {
             array_push($errors, 'Passwords are not the same');
         }
@@ -52,9 +50,7 @@ class RegisterController
         }
     }
 
-    private function validate(
-        array &$errors
-    ) {
+    private function validate(array &$errors):void {
         if(!Validator::string($this -> username, 4, 64)) {
             array_push($errors, 'Username must be between 4 and 64 characters');
         }
