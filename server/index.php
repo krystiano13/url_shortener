@@ -22,5 +22,6 @@ $app -> get('/l/{url}', '\App\controllers\RedirectController:getUrl');
 $app -> post('/shorten', '\App\controllers\LinkController:shorten');
 $app -> post('/register', '\App\controllers\RegisterController:register');
 $app -> post('/login', '\App\controllers\LoginController:login');
+$app -> post('/getUrls','\App\controllers\UrlController:getLinks');
 
 $app->run();
