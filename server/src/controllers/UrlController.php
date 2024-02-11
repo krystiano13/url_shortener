@@ -26,6 +26,15 @@ class UrlController
                 -> withStatus(403);
         }
 
+        $data = array();
+        $this -> get();
+
+        return $response
+            -> withHeader('Content-Type', 'application/json')
+            -> withStatus(200);
+    }
+
+    private function get(Response &$response, array &$data) {
         $db = new Database();
         $data = $db -> query('SELECT * FROM urls WHERE username=:username',[
             'username' => $this -> username
@@ -37,9 +46,5 @@ class UrlController
         else {
             $response -> getBody() -> write(json_encode(['message' => 'got urls', 'data' => array()]));
         }
-
-        return $response
-            -> withHeader('Content-Type', 'application/json')
-            -> withStatus(200);
     }
 }
