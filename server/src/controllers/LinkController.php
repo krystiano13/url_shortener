@@ -7,6 +7,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 use App\classes\Validator;
 use App\middleware\AuthMiddleware;
+use App\classes\Database;
 
 class LinkController
 {
@@ -17,7 +18,7 @@ class LinkController
     public function shorten(Request $request, Response $response) {
         $body = $request -> getBody();
 
-        $username = $body['username'];
+        $username = $body['username'] ?? null;
         $token = $body['token'];
         $this -> longUrl = $body['url'];
 
@@ -36,6 +37,37 @@ class LinkController
         }
 
         $this -> shortUrl = $this -> createURL();
+        $this -> saveURL($username, $this -> longUrl, $this -> shortUrl);
+
+        $message = array(
+            "message" => 'URL shortened',
+            "longURL" => $this -> longUrl,
+            "shortURL" => $this -> shortUrl
+        );
+
+        $response -> getBody() -> write(json_encode($message));
+
+        return $response
+            -> withHeader('Content-Type', 'application/json')
+            -> withStatus(200);
+    }
+
+    private function saveURL(string|null $username, string $long, string $short) {
+        $db = new Database();
+
+        if($username) {
+            $db -> query("INSERT INTO urls VALUES(NULL, :name, :long, :short)",[
+                'name' => $username,
+                'long' => $long,
+                'short' => $short
+            ]);
+        }
+        else {
+            $db -> query("INSERT INTO urls VALUES(NULL, NULL :long, :short)",[
+                'long' => $long,
+                'short' => $short
+            ]);
+        }
     }
 
     private function createURL():string {
