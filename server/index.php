@@ -17,6 +17,8 @@ $app->get('/', function (Request $request, Response $response, $args) {
     return $response -> withHeader('Content-Type', 'application/json');
 });
 
+$app -> get('/l/{url}', '\App\controllers\RedirectController:getUrl');
+
 $app -> post('/shorten', '\App\controllers\LinkController:shorten');
 $app -> post('/register', '\App\controllers\RegisterController:register');
 $app -> post('/login', '\App\controllers\LoginController:login');
