@@ -16,13 +16,13 @@ class LinkController
     private string $longUrl;
     private string $shortUrl;
     public function shorten(Request $request, Response $response) {
-        $body = $request -> getBody();
+        $body = $request -> getParsedBody();
 
         $username = $body['username'] ?? null;
-        $token = $body['token'];
+        $token = $body['token'] ?? null;
         $this -> longUrl = $body['url'];
 
-        if($username !== null && !AuthMiddleware::auth($token,$username)) {
+        if($username !== null && $token !== null && !AuthMiddleware::auth($token,$username)) {
             $response -> getBody() -> write(json_encode(['errors' => ['Unauthorized']]));
             return $response
                 -> withHeader('Content-Type', 'application/json')
@@ -37,7 +37,7 @@ class LinkController
         }
 
         $this -> shortUrl = $this -> createURL();
-        $this -> saveURL($username, $this -> longUrl, $this -> shortUrl);
+        $this -> saveURL($username, $token , $this -> longUrl, $this -> shortUrl);
 
         $message = array(
             "message" => 'URL shortened',
@@ -52,10 +52,10 @@ class LinkController
             -> withStatus(200);
     }
 
-    private function saveURL(string|null $username, string $long, string $short) {
+    private function saveURL(string|null $username, string|null $token, string $long, string $short) {
         $db = new Database();
 
-        if($username) {
+        if($username && $token) {
             $db -> query("INSERT INTO urls VALUES(NULL, :name, :long, :short)",[
                 'name' => $username,
                 'long' => $long,
@@ -63,7 +63,8 @@ class LinkController
             ]);
         }
         else {
-            $db -> query("INSERT INTO urls VALUES(NULL, NULL :long, :short)",[
+            $db -> query("INSERT INTO urls VALUES(NULL, :name, :long, :short)",[
+                'name' => null,
                 'long' => $long,
                 'short' => $short
             ]);
