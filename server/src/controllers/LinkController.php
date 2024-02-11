@@ -4,6 +4,8 @@ namespace App\controllers;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+
+use App\classes\Validator;
 use App\middleware\AuthMiddleware;
 
 class LinkController
@@ -17,6 +19,7 @@ class LinkController
 
         $username = $body['username'];
         $token = $body['token'];
+        $url = $body['url'];
 
         if(!AuthMiddleware::auth($token,$username)) {
             $response -> getBody() -> write(json_encode(['errors' => ['Unauthorized']]));
