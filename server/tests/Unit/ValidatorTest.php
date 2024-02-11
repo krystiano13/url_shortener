@@ -23,3 +23,10 @@ test('Check email method when true', function() {
     expect(Validator::email("test123@o2.pl")) -> toBeTrue();
 });
 
+test('Check url method when true', function() {
+    expect(Validator::url('https://www.google.pl')) -> toBeTrue();
+});
+
+test('Check url method when false', function() {
+    expect(Validator::url('123')) -> toBeFalse();
+});
