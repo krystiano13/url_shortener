@@ -22,7 +22,7 @@ class LinkController
         $token = $body['token'];
         $this -> longUrl = $body['url'];
 
-        if(!AuthMiddleware::auth($token,$username)) {
+        if($username !== null && !AuthMiddleware::auth($token,$username)) {
             $response -> getBody() -> write(json_encode(['errors' => ['Unauthorized']]));
             return $response
                 -> withHeader('Content-Type', 'application/json')
