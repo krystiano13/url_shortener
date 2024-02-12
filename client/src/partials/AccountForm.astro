@@ -16,7 +16,7 @@ const { mode } = Astro.props;
     }
     <label class="font-small">
         <span>Password</span> <br />
-        <input required class="outline-none font-small" type="password" name="password" />
+        <input required class="outline-none font-small" type="password" name="password1" />
     </label>
     {
         mode === "register" &&
@@ -27,6 +27,45 @@ const { mode } = Astro.props;
     }
     <button class="font-small w-[80%] text-white bg-cyan p-2 pl-4 pr-4 rounded-xl" type="submit">Register</button>
 </form>
+
+<script define:vars={{ mode }}>
+    const form = document.querySelector('form');
+    const data = new FormData(form);
+    const inputs = document.querySelectorAll('input');
+    let errors = [];
+
+    //register fetch
+
+    if(mode === "register") {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            inputs.forEach(item => {
+                data.append(item.name, item.value);
+            })
+
+            fetch('http://localhost:8000/register', {
+                method : "POST",
+                body: data
+            })
+                .then(res => res.json())
+                .then(data => {
+                    const err = [];
+                    if(data.errors) {
+                        data.errors.forEach(item => {
+                            err.push(item);
+                        })
+                    }
+                    if(data.message) {
+                        window.location.href = '/login';
+                    }
+                    errors = err;
+                })
+        })
+    }
+</script>
+
+
 
 <script>
     const labels = document.querySelectorAll('label');
