@@ -32,19 +32,48 @@ const routes = [
         </section>
     </div>
     <section class="justify-self-end hidden lg:block">
-        <a href="/login">
+        <a class="unlogged" href="/login">
             <button class="cursor-pointer font-big mr-6 grayish-violet h-dark-violet transition-colors">
                 Login
             </button>
         </a>
-        <a href="/register">
+        <a class="unlogged" href="/register">
             <button class="p-2 pl-6 pr-6 rounded-3xl cursor-pointer font-big text-white bg-cyan hover:opacity-60 transition-opacity">
                 Sign Up
+            </button>
+        </a>
+        <a class="logged" href="/login">
+            <button class="cursor-pointer font-big mr-6 grayish-violet h-dark-violet transition-colors">
+                Profile
+            </button>
+        </a>
+        <a class="logged" href="/register">
+            <button class="p-2 pl-6 pr-6 rounded-3xl cursor-pointer font-big text-white bg-cyan hover:opacity-60 transition-opacity">
+                Log Out
             </button>
         </a>
     </section>
     <HamburgerButton client:load />
 </nav>
+
+<script>
+    import Cookies from 'universal-cookie';
+
+    const cookies = new Cookies();
+    let loggedIn = false;
+
+    if(cookies.get("username") && cookies.get("token")) {
+        loggedIn = true;
+    }
+
+    if(loggedIn) {
+        document.querySelectorAll('.unlogged').forEach(item => item.remove());
+    }
+    else {
+        document.querySelectorAll('.logged').forEach(item => item.remove());
+    }
+
+</script>
 
 <script client:load>
     const hamburgerButton= document.querySelector('#hamburgerButton');
