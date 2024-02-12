@@ -42,7 +42,10 @@ const { mode } = Astro.props;
 
             inputs.forEach(item => {
                 data.append(item.name, item.value);
-            })
+            });
+
+            const paragraphs = document.querySelectorAll('p');
+            paragraphs.forEach(item => item.remove());
 
             fetch('http://localhost:8000/register', {
                 method : "POST",
@@ -60,6 +63,14 @@ const { mode } = Astro.props;
                         window.location.href = '/login';
                     }
                     errors = err;
+                })
+                .then(() => {
+                    errors.forEach(item => {
+                        const p = document.createElement('p');
+                        p.innerText = item;
+                        p.className = "text-red-500 font-small";
+                        form.appendChild(p);
+                    });
                 })
         })
     }
