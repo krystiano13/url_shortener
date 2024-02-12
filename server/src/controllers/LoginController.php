@@ -16,7 +16,7 @@ class LoginController
         $body = $request -> getParsedBody();
 
         $this -> username = $body['username'];
-        $this -> password = $body['password'];
+        $this -> password = $body['password1'];
 
         //error handling
         if(!$this->checkCredentials()) {
