@@ -42,16 +42,14 @@ const routes = [
                 Sign Up
             </button>
         </a>
-        <a class="logged" href="/login">
+        <a id="profile" class="logged" href="/">
             <button class="cursor-pointer font-big mr-6 grayish-violet h-dark-violet transition-colors">
                 Profile
             </button>
         </a>
-        <a class="logged" href="/register">
-            <button class="p-2 pl-6 pr-6 rounded-3xl cursor-pointer font-big text-white bg-cyan hover:opacity-60 transition-opacity">
-                Log Out
-            </button>
-        </a>
+        <button id="logout" class="logged p-2 pl-6 pr-6 rounded-3xl cursor-pointer font-big text-white bg-cyan hover:opacity-60 transition-opacity">
+            Log Out
+        </button>
     </section>
     <HamburgerButton client:load />
 </nav>
@@ -68,6 +66,17 @@ const routes = [
 
     if(loggedIn) {
         document.querySelectorAll('.unlogged').forEach(item => item.remove());
+        const profileAnchor = document.querySelector('#profile');
+        const logoutButton = document.querySelector('#logout');
+        profileAnchor.innerText = cookies.get("username");
+
+        logoutButton.addEventListener('click', () => {
+            cookies.remove('username');
+            cookies.remove('token');
+        });
+
+        window.location.href = '/';
+        window.location.reload();
     }
     else {
         document.querySelectorAll('.logged').forEach(item => item.remove());
