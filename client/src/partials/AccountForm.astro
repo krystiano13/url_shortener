@@ -29,6 +29,8 @@ const { mode } = Astro.props;
 </form>
 
 <script define:vars={{ mode }}>
+    import Cookies from 'universal-cookie';
+
     const form = document.querySelector('form');
     const data = new FormData(form);
     const inputs = document.querySelectorAll('input');
@@ -59,6 +61,15 @@ const { mode } = Astro.props;
                 if(data.message) {
                     if(mode === "register") {
                         window.location.href = '/login';
+                    }
+                    else {
+                        const cookie = new Cookies();
+                        const today = new Date();
+
+                        cookie.set("username", data.username, { expires : today.getTime() + 86400000 });
+                        cookie.set("token", data.token, { expires : today.getTime() + 86400000 });
+
+                        window.location.href = '/';
                     }
                 }
                 errors = err;
