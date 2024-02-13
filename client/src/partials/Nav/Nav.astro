@@ -73,10 +73,9 @@ const routes = [
             item.addEventListener('click', () => {
             deleteCookie('username');
             deleteCookie('token');
+            window.location.href = '/';
+            window.location.reload();
         }));
-
-        window.location.href = '/';
-        window.location.reload();
     }
     else {
         document.querySelectorAll('.logged').forEach(item => item.remove());

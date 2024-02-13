@@ -28,12 +28,9 @@ const { mode } = Astro.props;
     <button class="font-small w-[80%] text-white bg-cyan p-2 pl-4 pr-4 rounded-xl" type="submit">Register</button>
 </form>
 
-<script
-        crossorigin
-        src="https://unpkg.com/universal-cookie@7/umd/universalCookie.min.js"
-></script>
+<script type="module" define:vars={{ mode }}>
+    import { setCookie } from "../../public/scripts/cookies";
 
-<script define:vars={{ mode }}>
     const form = document.querySelector('form');
     const data = new FormData(form);
     const inputs = document.querySelectorAll('input');
@@ -66,11 +63,8 @@ const { mode } = Astro.props;
                         window.location.href = '/login';
                     }
                     else {
-                        const cookie = new Cookies();
-                        const today = new Date();
-
-                        cookie.set("username", data.username, { expires : today.getTime() + 86400000 });
-                        cookie.set("token", data.token, { expires : today.getTime() + 86400000 });
+                        setCookie("username", data.username, 1);
+                        setCookie("token", data.token, 1);
 
                         window.location.href = '/';
                     }

@@ -12,12 +12,13 @@ export const deleteCookie = (name) => {
 export const getCookie = (name) => {
     const decodedCookie = decodeURIComponent(document.cookie);
     const cookies = decodedCookie.split("; ");
+    let result = "";
 
     cookies.forEach(item => {
-        if(item.indexOf(name) == 0) {
-            return item.substring(name.length + 1);
+        if(item.indexOf(name) === 0) {
+            result = item.substring(name.length + 1);
         }
     });
 
-    return null;
+    return result;
 }
