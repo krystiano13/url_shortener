@@ -55,25 +55,15 @@ const routes = [
 </nav>
 
 <script type="module" client:load>
-    import Cookies from '../../../node_modules/universal-cookie/';
-
-    const cookies = new Cookies();
     let loggedIn = false;
-
-    if(cookies.get("username") && cookies.get("token")) {
-        loggedIn = true;
-    }
 
     if(loggedIn) {
         document.querySelectorAll('.unlogged').forEach(item => item.remove());
         const profileAnchors = document.querySelectorAll('.profile');
         const logoutButtons = document.querySelectorAll('.logout');
-        profileAnchors.forEach(item => item.innerText = cookies.get("username"));
 
         logoutButtons.forEach(item =>
             item.addEventListener('click', () => {
-            cookies.remove('username');
-            cookies.remove('token');
         }));
 
         window.location.href = '/';

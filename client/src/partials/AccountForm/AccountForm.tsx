@@ -6,8 +6,7 @@ import './AccountForm.css';
 interface Props {
     mode: "login" | "register"
 }
-
-export const AccountForm:FunctionComponent<Props> = ({ mode }) => {
+const AccountForm:FunctionComponent<Props> = ({ mode }) => {
     const [errors, setErrors] = useState<string[]>([]);
 
     const usernameInput = useRef<HTMLInputElement>(null);
@@ -96,3 +95,5 @@ export const AccountForm:FunctionComponent<Props> = ({ mode }) => {
         </form>
     )
 }
+
+export default AccountForm;
