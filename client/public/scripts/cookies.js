@@ -1,15 +1,15 @@
-const setCookie = (name,value,expires) => {
+export const setCookie = (name,value,expires) => {
     const date = new Date();
     date.setTime(date.getTime() + expires * 24 * 60 * 60 * 1000);
     const expire = `expires=${date.toUTCString()}`;
     document.cookie = `${name}=${value}; ${expire}; path=/`;
 }
 
-const deleteCookie = (name) => {
+export const deleteCookie = (name) => {
     setCookie(name, null, null);
 }
 
-const getCookie = (name) => {
+export const getCookie = (name) => {
     const decodedCookie = decodeURIComponent(document.cookie);
     const cookies = decodedCookie.split("; ");
 

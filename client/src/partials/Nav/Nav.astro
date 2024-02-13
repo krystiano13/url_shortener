@@ -54,16 +54,12 @@ const routes = [
     <HamburgerButton client:load />
 </nav>
 
-<script
-        crossorigin
-        src="https://unpkg.com/universal-cookie@7/umd/universalCookie.min.js"
-></script>
-
 <script type="module" client:load>
-    const cookies = new UniversalCookie();
+    import { getCookie, deleteCookie } from "../../../public/scripts/cookies";
+
     let loggedIn = false;
 
-    if(cookies.get("username") && cookies.get("token")) {
+    if(getCookie("username") && getCookie("token")) {
         loggedIn = true;
     }
 
@@ -71,12 +67,12 @@ const routes = [
         document.querySelectorAll('.unlogged').forEach(item => item.remove());
         const profileAnchors = document.querySelectorAll('.profile');
         const logoutButtons = document.querySelectorAll('.logout');
-        profileAnchors.forEach(item => item.innerText = cookies.get("username"));
+        profileAnchors.forEach(item => item.innerText = getCookie("username"));
 
         logoutButtons.forEach(item =>
             item.addEventListener('click', () => {
-            cookies.remove('username');
-            cookies.remove('token');
+            deleteCookie('username');
+            deleteCookie('token');
         }));
 
         window.location.href = '/';
