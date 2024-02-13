@@ -42,20 +42,20 @@ const routes = [
                 Sign Up
             </button>
         </a>
-        <a id="profile" class="logged" href="/">
+        <a class="logged profile" href="/">
             <button class="cursor-pointer font-big mr-6 grayish-violet h-dark-violet transition-colors">
                 Profile
             </button>
         </a>
-        <button id="logout" class="logged p-2 pl-6 pr-6 rounded-3xl cursor-pointer font-big text-white bg-cyan hover:opacity-60 transition-opacity">
+        <button class="logout logged p-2 pl-6 pr-6 rounded-3xl cursor-pointer font-big text-white bg-cyan hover:opacity-60 transition-opacity">
             Log Out
         </button>
     </section>
     <HamburgerButton client:load />
 </nav>
 
-<script>
-    import Cookies from 'universal-cookie';
+<script type="module" client:load>
+    import Cookies from '../../../node_modules/universal-cookie/';
 
     const cookies = new Cookies();
     let loggedIn = false;
@@ -66,14 +66,15 @@ const routes = [
 
     if(loggedIn) {
         document.querySelectorAll('.unlogged').forEach(item => item.remove());
-        const profileAnchor = document.querySelector('#profile');
-        const logoutButton = document.querySelector('#logout');
-        profileAnchor.innerText = cookies.get("username");
+        const profileAnchors = document.querySelectorAll('.profile');
+        const logoutButtons = document.querySelectorAll('.logout');
+        profileAnchors.forEach(item => item.innerText = cookies.get("username"));
 
-        logoutButton.addEventListener('click', () => {
+        logoutButtons.forEach(item =>
+            item.addEventListener('click', () => {
             cookies.remove('username');
             cookies.remove('token');
-        });
+        }));
 
         window.location.href = '/';
         window.location.reload();
