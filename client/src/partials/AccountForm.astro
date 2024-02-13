@@ -28,9 +28,12 @@ const { mode } = Astro.props;
     <button class="font-small w-[80%] text-white bg-cyan p-2 pl-4 pr-4 rounded-xl" type="submit">Register</button>
 </form>
 
-<script define:vars={{ mode }}>
-    import Cookies from 'universal-cookie';
+<script
+        crossorigin
+        src="https://unpkg.com/universal-cookie@7/umd/universalCookie.min.js"
+></script>
 
+<script define:vars={{ mode }}>
     const form = document.querySelector('form');
     const data = new FormData(form);
     const inputs = document.querySelectorAll('input');
