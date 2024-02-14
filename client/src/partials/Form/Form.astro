@@ -4,7 +4,7 @@ import shortenImage1 from '../../images/bg-shorten-desktop.svg';
 import shortenImage2 from '../../images/bg-shorten-mobile.svg';
 ---
 
-<section id="formWrapper" class="w-full p-6 lg:pr-36 lg:pl-36 flex justify-center items-center mt-24">
+<section id="formWrapper" class="w-full p-6 lg:pr-36 lg:pl-36 flex flex-col justify-center items-center mt-24">
     <form class="w-full relative h-44 md:h-32 p-3 md:p-0 flex-col md:flex-row flex gap-4 justify-center items-center rounded-xl">
         <Image
                 src={shortenImage1}
@@ -26,6 +26,14 @@ import shortenImage2 from '../../images/bg-shorten-mobile.svg';
             Shorten It!
         </button>
     </form>
+    <section class="url flex justify-between w-full bg-white p-3 roundex-xl">
+        <div class="font-big">
+            https://www.youtube.com/watch?v=BLO6LRPMUp8&t=1268s
+        </div>
+        <div class="font-big cyan">
+            http://localhost:8000/l/NDZiN
+        </div>
+    </section>
 </section>
 
 <script>
@@ -49,9 +57,20 @@ import shortenImage2 from '../../images/bg-shorten-mobile.svg';
 </script>
 
 <style>
+    .url {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        transform: translateY(150%);
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    }
+
     form {
         background-color: var(--dark-violet);
         transform: translateY(60%);
+    }
+
+    .cyan {
+        color: var(--cyan);
     }
 
     #btn {
