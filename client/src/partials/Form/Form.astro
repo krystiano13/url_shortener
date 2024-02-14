@@ -49,8 +49,38 @@ import shortenImage2 from '../../images/bg-shorten-mobile.svg';
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                if(data.message) {
+                    addUrl(data.longURL, data.shortURL);
+                }
+                else {
+                    alert('An error occured during shortening ! Try Again');
+                }
             })
+    }
+
+    function addUrl(longUrl, shortUrl) {
+        const formWrapper = document.querySelector('#formWrapper');
+
+        const section = document.createElement('section');
+        const div1 = document.createElement('div');
+        const div2 = document.createElement('div');
+
+        section.className = "url flex flex-col lg:flex-row justify-evenly lg:justify-between w-full bg-white p-3 rounded-xl";
+        div1.className = "font-big lg:text-base text-xs lg:text-left text-center lg:m-0 m-2";
+        div2.className = "font-big cyan lg:text-base text-xs lg:text-left text-center lg:m-0 m-2";
+        div2.style.color = "#2ACFCFFF";
+
+        section.style.marginBottom = "1rem";
+        section.style.marginTop = "1rem";
+        section.style.transform = "translateY(150%)";
+        section.style.boxShadow = "rgba(0, 0, 0, 0.16) 0px 1px 4px";
+
+        div1.innerText = longUrl;
+        div2.innerText = `http://localhost:8000/l/${shortUrl}`;
+
+        section.appendChild(div1);
+        section.appendChild(div2);
+        formWrapper.appendChild(section);
     }
 
     form.addEventListener('submit', handleSubmit);
