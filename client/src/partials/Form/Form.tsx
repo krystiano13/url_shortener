@@ -2,9 +2,25 @@ import './Form.css';
 import shortenImage1 from '../../images/bg-shorten-desktop.svg';
 import shortenImage2 from '../../images/bg-shorten-mobile.svg';
 export function Form() {
+    //@ts-ignore
+    function handleSubmit(e) {
+        e.preventDefault();
+        e.target.stopPropagation();
+        const data = new FormData(e.target as HTMLFormElement);
+
+        fetch('http://localhost:8000/shorten', {
+            method: "POST",
+            body: data
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
+    }
+
     return (
         <section id="formWrapper" className="w-full p-6 lg:pr-36 lg:pl-36 flex justify-center items-center mt-24">
-            <form className="w-full relative h-44 md:h-32 p-3 md:p-0 flex-col md:flex-row flex gap-4 justify-center items-center rounded-xl">
+            <form onSubmit={handleSubmit} className="w-full relative h-44 md:h-32 p-3 md:p-0 flex-col md:flex-row flex gap-4 justify-center items-center rounded-xl">
                 <img
                     src={shortenImage1.src as string}
                     alt="background of form"
