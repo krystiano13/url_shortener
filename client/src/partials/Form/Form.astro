@@ -1,4 +1,6 @@
 ---
+const { mode } = Astro.props;
+
 import { Image } from 'astro:assets';
 import shortenImage1 from '../../images/bg-shorten-desktop.svg';
 import shortenImage2 from '../../images/bg-shorten-mobile.svg';
@@ -28,12 +30,37 @@ import shortenImage2 from '../../images/bg-shorten-mobile.svg';
     </form>
 </section>
 
-<script>
+<script define:vars={{ mode }} type="module">
+    import { getCookie } from "../../../public/scripts/cookies";
+    let urls = [];
     const form = document.querySelector('form');
+
+    function getUsersLinks(username, token) {
+        const data = new FormData();
+        data.append('username', username);
+        data.append('token', token);
+
+        fetch(`http://localhost:8000/getUrls`, {
+            method: "POST",
+            body: data
+        })
+            .then(res => res.json())
+            .then(dat => {
+                urls = dat.data;
+                urls.forEach(item => {
+                    addUrl(item.longURL, item.shortURL);
+                })
+            })
+    }
 
     function handleSubmit(e) {
         e.preventDefault();
         const data = new FormData(e.target);
+
+        if(mode === "logged") {
+            data.append('username', getCookie('username'));
+            data.append('token', getCookie('token'));
+        }
 
         fetch('http://localhost:8000/shorten', {
             method: "POST",
@@ -73,6 +100,17 @@ import shortenImage2 from '../../images/bg-shorten-mobile.svg';
         section.appendChild(div1);
         section.appendChild(div2);
         formWrapper.appendChild(section);
+    }
+
+    if(mode === "logged") {
+        if(!getCookie('token') || !getCookie('username')) {
+            window.location.href = '/';
+        }
+
+        const username = getCookie('username');
+        const token = getCookie('token');
+
+        getUsersLinks(username, token);
     }
 
     form.addEventListener('submit', handleSubmit);
