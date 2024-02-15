@@ -8,3 +8,32 @@ import Form from '../partials/Form/Form.astro';
         <Form />
     </section>
 </Layout>
+
+<script type="module">
+    import { getCookie } from "../../../public/scripts/cookies";
+
+    let urls = [];
+
+    function getUsersLinks(username, token) {
+        const data = new FormData();
+        data.append('username', username);
+        data.append('token', token);
+
+        fetch(`http://localhost:8000/getUrls`, {
+            method: "POST",
+            body: data
+        })
+            .then(res => res.json())
+            .then(data => console.log(data))
+    }
+
+    if(!getCookie('token') || !getCookie('username')) {
+        window.location.href = '/';
+    }
+
+    const username = getCookie('username');
+    const token = getCookie('token');
+
+    getUsersLinks(username, token);
+
+</script>

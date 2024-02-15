@@ -27,7 +27,7 @@ class UrlController
         }
 
         $data = array();
-        $this -> get();
+        $this -> get($response, $data);
 
         return $response
             -> withHeader('Content-Type', 'application/json')
