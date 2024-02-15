@@ -17,3 +17,6 @@
 - install node.js
 - clone or download repo
 - import database.sql to your SQL server
+- run sql server at port 3306
+- in "server" folder run ```php -S localhost:8000```
+- in "client" folder run ```npm run dev```
