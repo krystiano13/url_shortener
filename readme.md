@@ -2,6 +2,11 @@
 
 ## Design from Frontend Mentor
 
+## Features
+- login and register system
+- shortening url
+- saving and showing shortened urls
+
 ## Tech Stack:
 - Astro
 - PHP
