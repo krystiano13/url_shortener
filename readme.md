@@ -16,6 +16,7 @@
 - SlimPHP
 - MySQL
 - CSS
+- HTML
 
 ## Project Setup 
 - install php and mysql 
