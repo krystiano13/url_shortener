@@ -8,12 +8,12 @@
 - saving and showing shortened urls
 
 ## Tech Stack:
-- Astro
+- Astro framework
 - PHP
 - TS
 - JS
 - Tailwind
-- SlimPHP
+- SlimPHP framework
 - MySQL
 - CSS
 - HTML
